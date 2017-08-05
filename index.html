@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS FECTH API PROMISE</title>
+</head>
+<body>
+    <h1>JS FETCH API PRIMISE</h1>
+    <script>
+        //On peut ainsi obtenir des fonctions asynchrones en renvoyant une promesse :
+function fetch(url) {
+    
+ return new Promise(function(resolve, reject) {
+      let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+
+
+   xhr.onload = function() {
+        if(xhr.status === 200) {
+            resolve(xhr.responseText);
+        }else {
+            reject(xhr.status);
+        }
+    };
+    xhr.onerror = function(error) {
+        reject(error);
+    };
+    xhr.send();
+  });
+};
+
+fetch('https://dog.ceo/api/breeds/list/all').then 
+(function(response){
+    console.log(response)
+}).catch(function(error) {
+    console.error(error);
+            
+});
+    </script>
+    <!-- <script>
+        "use strict";
+        const dogurlapi = "https://dog.ceo/api/breeds/list/all";
+
+        // FUNCTION PROMISE.
+        function funcPromsie(url) {
+            return new Promise((résolue, rejeter) => {
+                //On lance la requete xhr.
+                const xhr = new XMLHttpRequest();
+                //console.log("Après" + xhr);
+                xhr.open("GET", url, true);
+                //EQUIVALENCE
+                // xhr.onreadystatechange = function() {
+                //     if(xhr.status === XMLHttpRequest.DONE) {
+                //         resolue(xhr.responseText);
+                //     }
+                // }
+                xhr.onload = function() {
+                    if(xhr.status === 200) {
+                        resolue(xhr.responseText);
+                    }else {
+                        rejeter(xhr.status);
+                    }   
+                }
+                xhr.onerror = function(error) {
+                    console.error(rejeter(xhr.statusText))
+                }
+                //console.log("Avant" + xhr);
+                xhr.send();
+            });
+        };
+
+
+        fetch(dogurlapi)
+        .then(function(responce) {
+            console.log(responce);
+        })
+        .catch(function(error) {
+            console.error(error);
+        });
+    </script> -->
+</body>
+</html>
